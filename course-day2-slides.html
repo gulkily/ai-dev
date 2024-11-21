@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f0f0;
+    }
+
+    .slide {
+      background: white;
+      margin: 20px auto;
+      padding: 40px;
+      max-width: 800px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      min-height: 400px;
+      display: none;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    h1 {
+      color: #2563eb;
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+    }
+
+    h2 {
+      color: #1e40af;
+      font-size: 2em;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 1.2em;
+      margin-bottom: 2em;
+    }
+
+    ul {
+      font-size: 1.2em;
+      line-height: 1.6;
+      margin-left: 1em;
+    }
+
+    code {
+      background: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    .controls {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+
+    button:hover {
+      background: #1e40af;
+    }
+
+    .slide-number {
+      font-size: 0.9em;
+      color: #666;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .grid-item {
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
+    }
+
+    .code-block {
+      background: #1e1e1e;
+      color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      margin: 10px 0;
+      line-height: 1.4;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+
+<div class="slide active" id="slide1">
+  <h1>Git, GitHub, and AI-Driven Coding</h1>
+  <div class="subtitle">Day 2: Version Control and Collaborative Development</div>
+
+  <div class="grid-container">
+    <div class="grid-item">
+      <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+      </svg>
+      <h3>Git Fundamentals</h3>
+      <p>Understand the core concepts of Git.</p>
+    </div>
+    <div class="grid-item">
+      <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
+      </svg>
+      <h3>GitHub as Backend</h3>
+      <p>Explore GitHub as a distributed backend for your applications.</p>
+    </div>
+    <div class="grid-item">
+      <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"></path>
+      </svg>
+      <h3>AI-Assisted Git</h3>
+      <p>Learn how AI can simplify your Git workflow.</p>
+    </div>
+  </div>
+
+  <div class="slide-number">1/8</div>
+</div>
+
+<div class="slide" id="slide2">
+  <h2>Essential Git Commands</h2>
+  <div class="code-block">
+    git clone https://github.com/username/repo.git <br>
+    git add . <br>
+    git commit -m "message" <br>
+    git push origin main <br>
+    git pull origin main
+  </div>
+  <div class="grid-container">
+    <div class="grid-item">
+      <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <h3>Clone</h3>
+      <p>Copy a repository to your local machine.</p>
+    </div>
+    <div class="grid-item">
+      <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+      </svg>
+      <h3>Add</h3>
+      <p>Stage changes for a commit.</p>
+    </div>
+    <div class="grid-item">
+      <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+      </svg>
+      <h3>Commit</h3>
+      <p>Save changes with a descriptive message.</p>
+    </div>
+    <div class="grid-item">
+      <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path>
+      </svg>
+      <h3>Push</h3>
+      <p>Upload your local changes to GitHub.</p>
+    </div>
+    <div class="grid-item">
+      <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+      </svg>
+      <h3>Pull</h3>
+      <p>Download the latest changes from GitHub.</p>
+    </div>
+  </div>
+  <div class="slide-number">2/8</div>
+</div>
+
+<div class="slide" id="slide3">
+  <h2>Git Branching</h2>
+  <div class="code-block">
+    git branch feature-name <br>
+    git checkout feature-name <br>
+    git checkout -b new-feature <br>
+    git merge feature-name
+  </div>
+  <div class="grid-container">
+    <div class="grid-item">
+      <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"></path>
+      </svg>
+      <h3>Workflow Streams</h3>
+      <p>Create separate streams for different features or tasks.</p>
+    </div>
+    <div class="grid-item">
+      <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-7.536 5.879a1 1 0 001.415 1.415L10 11.414l1.121 1.122a1 1 0 001.415-1.415L11 10l-1.121-1.122a1 1 0 00-1.415 1.415L9 11l-1.121 1.122z" clip-rule="evenodd"></path>
+      </svg>
+      <h3>Isolate Development</h3>
+      <p>Develop and test features in isolation without affecting the main codebase.</p>
+    </div>
+    <div class="grid-item">
+      <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+      </svg>
+      <h3>Safe Experimentation</h3>
+      <p>Experiment with new ideas or approaches without risking the stability of the project.</p>
+    </div>
+    <div class="grid-item">
+      <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.4

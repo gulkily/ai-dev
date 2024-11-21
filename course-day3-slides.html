@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+        }
+        .slide {
+            background: white;
+            margin: 20px auto;
+            padding: 40px;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            min-height: 400px;
+            display: none;
+        }
+        .slide.active {
+            display: block;
+        }
+        h1 {
+            color: #2563eb;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        h2 {
+            color: #1e40af;
+            font-size: 2em;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 2em;
+        }
+        ul {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-left: 1em;
+        }
+        code {
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 10px 0;
+            line-height: 1.4;
+            font-size: 0.9em;
+            white-space: pre;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+        button:hover {
+            background: #1e40af;
+        }
+        .slide-number {
+            font-size: 0.9em;
+            color: #666;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide active" id="slide1">
+    <h1>Backend Fundamentals with AI</h1>
+    <div class="subtitle">Day 3: Building Our Python Backend</div>
+    <ul>
+        <li>Python and SQLite setup</li>
+        <li>Basic server implementation</li>
+        <li>API endpoint creation</li>
+        <li>AI-assisted development workflow</li>
+    </ul>
+    <div class="slide-number">1/8</div>
+</div>
+
+<div class="slide" id="slide2">
+    <h2>Setting Up the Environment</h2>
+    <div class="code-block">
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+# Windows:
+venv\Scripts\activate
+# Unix/MacOS:
+source venv/bin/activate
+
+# Install dependencies
+pip install flask flask-cors sqlite3</div>
+    <ul>
+        <li>Virtual environment isolation</li>
+        <li>Dependencies management</li>
+        <li>Project structure setup</li>
+    </ul>
+    <div class="slide-number">2/8</div>
+</div>
+
+<div class="slide" id="slide3">
+    <h2>Basic Flask Server</h2>
+    <div class="code-block">
+from flask import Flask, jsonify
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
+
+@app.route('/api/health', methods=['GET'])
+def health_check():
+    return jsonify({"status": "healthy"})
+
+if __name__ == '__main__':
+    app.run(debug=True)</div>
+    <ul>
+        <li>Flask application setup</li>
+        <li>CORS configuration</li>
+        <li>Basic health check endpoint</li>
+    </ul>
+    <div class="slide-number">3/8</div>
+</div>
+
+<div class="slide" id="slide4">
+    <h2>SQLite Database Setup</h2>
+    <div class="code-block">
+import sqlite3
+
+def init_db():
+    conn = sqlite3.connect('messages.db')
+    c = conn.cursor()
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS messages
+        (id INTEGER PRIMARY KEY AUTOINCREMENT,
+         content TEXT NOT NULL,
+         timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)
+    ''')
+    conn.commit()
+    conn.close()</div>
+    <ul>
+        <li>Database connection</li>
+        <li>Table creation</li>
+        <li>Schema design</li>
+    </ul>
+    <div class="slide-number">4/8</div>
+</div>
+
+<div class="slide" id="slide5">
+    <h2>Creating API Endpoints</h2>
+    <div class="code-block">
+@app.route('/api/messages', methods=['POST'])
+def create_message():
+    data = request.json
+    conn = sqlite3.connect('messages.db')
+    c = conn.cursor()
+    c.execute('INSERT INTO messages (content) VALUES (?)',
+              (data['content'],))
+    conn.commit()
+    conn.close()
+    return jsonify({"status": "success"})</div>
+    <ul>
+        <li>RESTful API design</li>
+        <li>Request handling</li>
+        <li>Database operations</li>
+        <li>Response formatting</li>
+    </ul>
+    <div class="slide-number">5/8</div>
+</div>
+
+<div class="slide" id="slide6">
+    <h2>AI-Assisted Development</h2>
+    <ul>
+        <li>Common Backend Prompts
+            <ul>
+                <li>"Generate an endpoint for fetching messages"</li>
+                <li>"Help me implement error handling"</li>
+                <li>"How to optimize this database query?"</li>
+            </ul>
+        </li>
+        <li>Best Practices
+            <ul>
+                <li>Clear prompt structure</li>
+                <li>Iterative refinement</li>
+                <li>Code review requests</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="slide-number">6/8</div>
+</div>
+
+<div class="slide" id="slide7">
+    <h2>Error Handling</h2>
+    <div class="code-block">
+@app.errorhandler(404)
+def not_found(error):
+    return jsonify({"error": "Resource not found"}), 404
+
+@app.errorhandler(500)
+def server_error(error):
+    return jsonify({"error": "Internal server error"}), 500
+
+def safe_db_operation(operation):
+    try:
+        return operation()
+    except sqlite3.Error as e:
+        return jsonify({"error": str(e)}), 500</div>
+    <ul>
+        <li>HTTP error handling</li>
+        <li>Database error management</li>
+        <li>Client feedback</li>
+    </ul>
+    <div class="slide-number">7/8</div>
+</div>
+
+<div class="slide" id="slide8">
+    <h2>Today's Exercise</h2>
+    <ul>
+        <li>Implementation Tasks
+            <ul>
+                <li>Set up Flask server</li>
+                <li>Create messages database</li>
+                <li>Implement CRUD endpoints</li>
+                <li>Test with Postman/curl</li>
+            </ul>
+        </li>
+        <li>AI Practice
+            <ul>
+                <li>Generate endpoint code</li>
+                <li>Debug with AI assistance</li>
+                <li>Optimize implementations</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="slide-number">8/8</div>
+</div>
+
+<div class="controls">
+    <button onclick="prevSlide()">Previous</button>
+    <button onclick="nextSlide()">Next</button>
+</div>
+
+<script>
+let currentSlide = 1;
+const totalSlides = 8;
+
+function showSlide(n) {
+    const slides = document.querySelectorAll('.slide');
+    slides.forEach(slide => slide.classList.remove('active'));
+    document.getElementById('slide' + n).classList.add('active');
+}
+
+function nextSlide() {
+    if (currentSlide < totalSlides) {
+        currentSlide++;
+        showSlide(currentSlide);
+    }
+}
+
+function prevSlide() {
+    if (currentSlide > 1) {
+        currentSlide--;
+        showSlide(currentSlide);
+    }
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+});
+</script>
+
+</body>
+</html>

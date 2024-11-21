@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+        }
+        .slide {
+            background: white;
+            margin: 20px auto;
+            padding: 40px;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            min-height: 400px;
+            display: none;
+        }
+        .slide.active {
+            display: block;
+        }
+        h1 {
+            color: #2563eb;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        h2 {
+            color: #1e40af;
+            font-size: 2em;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 2em;
+        }
+        ul {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-left: 1em;
+        }
+        code {
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 10px 0;
+            line-height: 1.4;
+            font-size: 0.9em;
+            white-space: pre;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+        button:hover {
+            background: #1e40af;
+        }
+        .slide-number {
+            font-size: 0.9em;
+            color: #666;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+        .dual-code {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide active" id="slide1">
+    <h1>Connecting Frontend and Backend</h1>
+    <div class="subtitle">Day 4: Building a Full-Stack Application</div>
+    <ul>
+        <li>HTML/CSS fundamentals</li>
+        <li>Frontend-backend communication</li>
+        <li>API integration</li>
+        <li>AI-assisted UI development</li>
+    </ul>
+    <div class="slide-number">1/9</div>
+</div>
+
+<div class="slide" id="slide2">
+    <h2>Basic HTML Structure</h2>
+    <div class="code-block">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Messaging App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="message-list"></div>
+        <form id="message-form">
+            <input type="text" id="message-input">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html></div>
+    <ul>
+        <li>Semantic HTML structure</li>
+        <li>Form handling</li>
+        <li>Resource linking</li>
+    </ul>
+    <div class="slide-number">2/9</div>
+</div>
+
+<div class="slide" id="slide3">
+    <h2>CSS Styling</h2>
+    <div class="code-block">
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#message-list {
+    height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.message {
+    background: #f0f0f0;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+}</div>
+    <ul>
+        <li>Responsive design</li>
+        <li>Flexbox/Grid layouts</li>
+        <li>Modern styling techniques</li>
+    </ul>
+    <div class="slide-number">3/9</div>
+</div>
+
+<div class="slide" id="slide4">
+    <h2>API Communication</h2>
+    <div class="code-block">
+// Fetch messages
+async function getMessages() {
+    try {
+        const response = await fetch('http://localhost:5000/api/messages');
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// Send message
+async function sendMessage(content) {
+    try {
+        const response = await fetch('http://localhost:5000/api/messages', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ content })
+        });
+        return await response.json();
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}</div>
+    <div class="slide-number">4/9</div>
+</div>
+
+<div class="slide" id="slide5">
+    <h2>Event Handling</h2>
+    <div class="code-block">
+document.getElementById('message-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const input = document.getElementById('message-input');
+    const content = input.value.trim();
+    
+    if (content) {
+        await sendMessage(content);
+        input.value = '';
+        await refreshMessages();
+    }
+});
+
+async function refreshMessages() {
+    const messages = await getMessages();
+    const messageList = document.getElementById('message-list');
+    messageList.innerHTML = messages
+        .map(msg => `
+            <div class="message">
+                <div class="content">${msg.content}</div>
+                <div class="timestamp">${msg.timestamp}</div>
+            </div>
+        `).join('');
+}</div>
+    <div class="slide-number">5/9</div>
+</div>
+
+<div class="slide" id="slide6">
+    <h2>AI-Assisted UI Development</h2>
+    <ul>
+        <li>Common Frontend Prompts
+            <ul>
+                <li>"Generate a responsive layout for messages"</li>
+                <li>"Help me style the message input form"</li>
+                <li>"Create an animation for new messages"</li>
+            </ul>
+        </li>
+        <li>Layout Generation
+            <ul>
+                <li>Grid/Flexbox structures</li>
+                <li>Responsive breakpoints</li>
+                <li>Component organization</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="slide-number">6/9</div>
+</div>
+
+<div class="slide" id="slide7">
+    <h2>Error Handling & Loading States</h2>
+    <div class="code-block">
+function showError(message) {
+    const errorDiv = document.getElementById('error-message');
+    errorDiv.textContent = message;
+    errorDiv.style.display = 'block';
+    setTimeout(() => {
+        errorDiv.style.display = 'none';
+    }, 3000);
+}
+
+function setLoading(isLoading) {
+    const button = document.querySelector('button[type="submit"]');
+    button.disabled = isLoading;
+    button.textContent = isLoading ? 'Sending...' : 'Send';
+}</div>
+    <ul>
+        <li>User feedback</li>
+        <li>Loading indicators</li>
+        <li>Error messages</li>
+    </ul>
+    <div class="slide-number">7/9</div>
+</div>
+
+<div class="slide" id="slide8">
+    <h2>Testing the Integration</h2>
+    <ul>
+        <li>End-to-End Testing
+            <ul>
+                <li>Start backend server</li>
+                <li>Open frontend in browser</li>
+                <li>Send test messages</li>
+                <li>Verify storage and retrieval</li>
+            </ul>
+        </li>
+        <li>Common Issues
+            <ul>
+                <li>CORS errors</li>
+                <li>Network timeouts</li>
+                <li>Data format mismatches</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="slide-number">8/9</div>
+</div>
+
+<div class="slide" id="slide9">
+    <h2>Today's Exercise</h2>
+    <ul>
+        <li>Implementation Tasks
+            <ul>
+                <li>Create basic HTML structure</li>
+                <li>Style the message interface</li>
+                <li>Implement message sending/receiving</li>
+                <li>Add error handling</li>
+            </ul>
+        </li>
+        <li>AI Practice
+            <ul>
+                <li>Generate UI components</li>
+                <li>Debug integration issues</li>
+                <li>Optimize user experience</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="slide-number">9/9</div>
+</div>
+
+<div class="controls">
+    <button onclick="prevSlide()">Previous</button>
+    <button onclick="nextSlide()">Next</button>
+</div>
+
+<script>
+let currentSlide = 1;
+const totalSlides = 9;
+
+function showSlide(n) {
+    const slides = document.querySelectorAll('.slide');
+    slides.forEach(slide => slide.classList.remove('active'));
+    document.getElementById('slide' + n).classList.add('active');
+}
+
+function nextSlide() {
+    if (currentSlide < totalSlides) {
+        currentSlide++;
+        showSlide(currentSlide);
+    }
+}
+
+function prevSlide() {
+    if (currentSlide > 1) {
+        currentSlide--;
+        showSlide(currentSlide);
+    }
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+});
+</script>
+
+</body>
+</html>
